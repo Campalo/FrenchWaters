@@ -1,15 +1,20 @@
 import React from 'react';
 import './App.css';
+import Navigation from './components/Navigation';
+import SubNavigation from './components/SubNavigation';
+import Content from './components/Content';
 
 function App() {
   return (
     <div className="App">
       <header>
-        <h1>Header</h1>
+        <Navigation />
       </header>
-      <body>
-        <h2>Body</h2>
-      </body>
+      <main>
+        <Content />
+        <SubNavigation />
+        <Content />
+      </main>
     </div>
   );
 }
