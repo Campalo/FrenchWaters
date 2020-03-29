@@ -12,17 +12,14 @@ const options = {
 }
 
 const observer = new IntersectionObserver(([intersection]) => {
-  console.log(intersection)
   const enterTop = intersection.isIntersecting && intersection.intersectionRect.top <= 80 + intersection.target.clientHeight;
   const leaveTop = !intersection.isIntersecting && intersection.intersectionRect.top <= 80;
 
   if (enterTop) {
-    console.log('entertop')
     const navigation = document.getElementById('nav');
     navigation.classList.remove('hidden')
   }
   if (leaveTop) {
-    console.log('leavetop')
     const navigation = document.getElementById('nav');
     navigation.classList.add('hidden')
   }
@@ -37,19 +34,31 @@ function App() {
    observer.observe(subNavigation)
   });
 
-  const [hasError, setErrors] = useState(false);
-  const [departments, setDepartments] = useState({});
+  const departements = new Array (95)
+    .fill("")
+    .map( (_, index) => (index + 1).toString() )
+    .concat(["971", "972", "973", "974", "976"])
 
-  async function fetchDepartments() {
-    const response = await fetch("https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=44&size=10");
-    response
-      .json()
-      .then( response => setDepartments(response) )
-      .catch( error => setErrors(error) )
+  departements.splice(19, 1, "2A", "2B")
+
+  console.log(departements)
+
+  const [stations, setStations] = useState([]);
+  let hasFetched = false;
+
+  // TODO : stop infinite loop
+  async function fetchCountStations() {
+    const urls = departements.map( dept => `https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=${dept}`);
+    const requests = urls.map( url => fetch(url) )
+    const responses = await Promise.all(requests);
+    const responsesJson = responses.map( response => response.json())
+    const result = await Promise.all(responsesJson)
+    setStations(result)
+    console.log(stations)
   }
 
   useEffect(() => {
-    fetchDepartments();
+    fetchCountStations();
   });
 
   return (
@@ -60,9 +69,11 @@ function App() {
       <main>
         <Content />
         <SubNavigation />
-        <p>{JSON.stringify(departments)}</p>
+        <p>Departements</p>
+        <ul>
+          {stations.map( (station, i) => (<li>{departements[i]}: {station.count} stations</li>))}
+        </ul>
         <br></br>
-        <span>Error: {JSON.stringify(hasError)}</span>
       </main>
     </div>
   );
