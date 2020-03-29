@@ -3,7 +3,7 @@ import './Navigation.css';
 
 function SubNavigation() {
     return (
-        <div className="subNav">
+        <div id="subNav">
             <span>SubNavigation</span>
         </div>
     )

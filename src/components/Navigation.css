@@ -5,17 +5,24 @@ nav {
     display: flex;
     align-items: center;
     padding: 0 20px 0 20px;
+    transition: transform 0.2s;
 }
 
 span {
     font-size: 1.5em;
 }
 
-.subNav {
+#subNav {
     margin: 40px 0 40px 0;
     padding: 0 20px 0 20px;
     height: 60px;
     display: flex;
     align-items: center;
     background-color: orange;
+    position: sticky;
+    top: 0;
+}
+
+.hidden {
+    transform: translateY(-100%);
 }
