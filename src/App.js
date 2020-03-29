@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import SubNavigation from './components/SubNavigation';
@@ -31,9 +31,25 @@ const observer = new IntersectionObserver(([intersection]) => {
 
 function App() {
 
+  //SideNav effect
   useEffect(() => {
    const subNavigation = document.getElementById('subNav');
    observer.observe(subNavigation)
+  });
+
+  const [hasError, setErrors] = useState(false);
+  const [departments, setDepartments] = useState({});
+
+  async function fetchDepartments() {
+    const response = await fetch("https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=44&size=10");
+    response
+      .json()
+      .then( response => setDepartments(response) )
+      .catch( error => setErrors(error) )
+  }
+
+  useEffect(() => {
+    fetchDepartments();
   });
 
   return (
@@ -44,7 +60,9 @@ function App() {
       <main>
         <Content />
         <SubNavigation />
-        <Content />
+        <p>{JSON.stringify(departments)}</p>
+        <br></br>
+        <span>Error: {JSON.stringify(hasError)}</span>
       </main>
     </div>
   );
