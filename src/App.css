@@ -13,8 +13,19 @@ main {
   padding-top: 40px;
 }
 
-p, h1 {
+p, h1, h2 {
   margin: 0;
-  padding: 20px;;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.list {
+  background-color: white;
+  width: max-content;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-right: 20px;
 }
 

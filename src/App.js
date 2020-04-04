@@ -103,10 +103,11 @@ function App() {
         </ul>
         <br></br> */}
 
-        <p>Departements</p>
-
+        <h2>Departements</h2>
         {error ? <p>{error}</p> : null}
-        <DepartementList isloading={isloading} depts={deptsTest}/>
+        <div className="list">
+          <DepartementList isloading={isloading} depts={deptsTest}/>
+        </div>
 
       </main>
     </div>
@@ -140,12 +141,12 @@ function DepartementList({isloading, depts}) {
       renderItem={dept => (
         <List.Item>
           <List.Item.Meta
-            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-            title={<p>{dept.code} - {dept.nom}</p>}
+            avatar={<Avatar src="https://images.unsplash.com/photo-1541103335697-086d3519c039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" />}
+            title={`${dept.code} - ${dept.nom}`}
             description="Nombre de stations"
             />
         </List.Item>
       )}
-      />
+    />
   )
 }
