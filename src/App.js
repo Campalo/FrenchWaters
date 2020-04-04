@@ -3,6 +3,8 @@ import './App.css';
 import Navigation from './components/Navigation';
 import SubNavigation from './components/SubNavigation';
 import Content from './components/Content';
+import { List, Avatar } from 'antd';
+import 'antd/dist/antd.css';
 
 
 const options = {
@@ -11,7 +13,7 @@ const options = {
   threshold: 1 //100% target has crossed the intersection
 }
 
-//SideNav effect
+//SideNav effect : TODO : Fix it
 const observer = new IntersectionObserver(([intersection]) => {
   const enterTop = intersection.isIntersecting && intersection.intersectionRect.top <= 80 + intersection.target.clientHeight;
   const leaveTop = !intersection.isIntersecting && intersection.intersectionRect.top <= 80;
@@ -104,19 +106,7 @@ function App() {
         <p>Departements</p>
 
         {error ? <p>{error}</p> : null}
-
-        {!isloading ? (
-          deptsTest.map( deptTest => {
-            const { code, nom } = deptTest ;
-            return (
-              <ul key={code}>
-                <li>{code} - {nom}</li>
-              </ul>
-            )
-          })
-        ) : (
-          <span>Loading...</span>
-        )}
+        <DepartementList isloading={isloading} depts={deptsTest}/>
 
       </main>
     </div>
@@ -124,3 +114,38 @@ function App() {
 }
 
 export default App;
+
+
+// function DepartementList({isloading, depts}) {
+//   if (isloading) {
+//     return <span>Loading...</span>
+//   }
+
+//   return (
+//     <ul>
+//       {depts.map(dept => <li key={dept.code}>{dept.code} - {dept.nom}</li>)}
+//     </ul>
+//   )
+// }
+
+function DepartementList({isloading, depts}) {
+  if (isloading) {
+    return <span>Loading...</span>
+  }
+
+  return (
+    <List
+      itemLayout="horizontal"
+      dataSource={depts}
+      renderItem={dept => (
+        <List.Item>
+          <List.Item.Meta
+            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+            title={<p>{dept.code} - {dept.nom}</p>}
+            description="Nombre de stations"
+            />
+        </List.Item>
+      )}
+      />
+  )
+}
