@@ -37,49 +37,42 @@ function App() {
    observer.observe(subNavigation)
   });
 
-  // Get departements number and name
   const [depts, setDept] = useState([]);
   const [isloading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  async function fetchDepartements() {
+    const urlDept = 'https://geo.api.gouv.fr/departements/';
+    const response = await fetch(urlDept);
+    const responseJson = await response.json();
+    return responseJson;
+  }
+
+  async function fetchStationsByDepartement(dept) {
+    const urlStationsByDept = `https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=${dept.code}&page=1&size=5`;
+    const response = await fetch(urlStationsByDept);
+    const responseJson = await response.json();
+    return {...responseJson, ...dept};
+  }
+
+
   useEffect( () => {
-    async function fetchDepartements() {
-      console.log('test')
-      try {
-        const urlDept = 'https://geo.api.gouv.fr/departements/';
-        const response = await fetch(urlDept);
-        const responseJson = await response.json();
-        setDept(responseJson);
-      } catch(err){
-        setError(err.message)
-      }
+    async function fetchEverything() {
+      const depts = await fetchDepartements();
+      const requests = await depts.map(dept => fetchStationsByDepartement(dept));
+      const everything = await Promise.all(requests) // array with all departements and info of the station for each of them
+      setDept(everything)
+    }
+
+    try {
+      fetchEverything()
+      setLoading(false)
+    } catch(err){
+      setError(err.message)
+      console.log(err.message)
       setLoading(false)
     }
-    fetchDepartements();
   }, []);
-
-
-  // Get Stations number by departement
-  const [stations, setStations] = useState([]);
-
-  useEffect( () => {
-    if (depts.length > 100) { // Wait for the 101 departements to be loaded before fetching the stations
-      async function fetchCountStations() {
-        console.log('depts.code', depts.map(dept => dept.code))
-        try {
-          const urls = depts.map( dept => `https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=${dept.code}`);
-          const requests = urls.map( url => fetch(url) )
-          const responses = await Promise.all(requests);
-          const responsesJson = responses.map( response => response.json())
-          const result = await Promise.all(responsesJson)
-          setStations(result)
-        } catch(err){
-          console.log(err.message)
-        }
-      }
-      fetchCountStations();
-    }
-  }, [depts]);
 
   return (
     <div className="App">
@@ -91,9 +84,9 @@ function App() {
         <SubNavigation />
 
         <p>Stations</p>
-        <ul>
+        {/* <ul>
           {stations.map( (station, i) => <li key={depts[i].code}>{depts[i].code}: {station.count} stations</li>)}
-        </ul>
+        </ul> */}
 
         <h2>Departements</h2>
         {error ? <p><i>{error}</i></p> : null}
