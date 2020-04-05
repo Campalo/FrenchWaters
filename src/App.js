@@ -49,7 +49,7 @@ function App() {
   }
 
   async function fetchStationsByDepartement(dept) {
-    const urlStationsByDept = `https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=${dept.code}&page=1&size=5`;
+    const urlStationsByDept = `https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=${dept.code}&page=1&size=10`;
     const response = await fetch(urlStationsByDept);
     const responseJson = await response.json();
     return {...responseJson, ...dept};
@@ -73,11 +73,13 @@ function App() {
     }
   }, []);
 
-  const [deptSelected, selectDept]=useState(false)
+  const [isDeptSelected, setIsDeptSelected]=useState(false);
+  const [stations, setStations]=useState([]);
 
-  function handleSelectDept() {
-    console.log('clicked')
-    selectDept(true)
+  function handleSelectDept(event) {
+    setIsDeptSelected(true);
+    const selectedDept = depts.find( dept => dept.code === event.target.value)
+    setStations(selectedDept.data);
   }
 
   return (
@@ -97,12 +99,12 @@ function App() {
             <DepartementList isloading={isloading} departements={depts} showMesurements={handleSelectDept}/>
           </div>
         </div>
-        {deptSelected ?
+        {isDeptSelected ?
           <div>
             <h2>Station selectionnée pour les mesures</h2>
             <h3>Nom departement selectionne</h3>
             <div className="list">
-              <MeasurementsByDept isloading={isloading} departements={depts}/>
+              <StationsListForOneDept isloading={isloading} stations={stations}/>
             </div>
           </div>
         : 'Choisissez un département'}
@@ -132,7 +134,7 @@ function DepartementList({isloading, departements, showMesurements}) {
             description={`${dept.count} stations`}
           />
           <div className="btn-list">
-            <Button onClick={showMesurements}>Select</Button>
+            <Button onClick={showMesurements} value={dept.code}>Select</Button>
           </div>
         </List.Item>
       )}
@@ -140,19 +142,19 @@ function DepartementList({isloading, departements, showMesurements}) {
   )
 };
 
-function MeasurementsByDept({isloading, departements}) { //WIP
+function StationsListForOneDept({isloading, stations}) { //WIP
   if (isloading) {
     return <span>Loading...</span>
   }
   return (
     <List
       itemLayout="horizontal"
-      dataSource={departements}
-      renderItem={dept => (
+      dataSource={stations}
+      renderItem={station => (
         <List.Item>
           <List.Item.Meta
             avatar={<Avatar src="https://images.unsplash.com/photo-1533201357341-8d79b10dd0f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
-            title={`Piézomètre: ${dept.data[0].code_bss}`}
+            title={`Piézomètre: ${station.code_bss}`}
             description="Profondeur nappe et altitude de la nappe"
           />
         </List.Item>
