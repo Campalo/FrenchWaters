@@ -29,7 +29,7 @@ const observer = new IntersectionObserver(([intersection]) => {
 }, options);
 
 
-function App() {
+function App() { // TODO: Store the fetch in local storage
 
   //SideNav effect
   useEffect(() => {
@@ -74,12 +74,14 @@ function App() {
   }, []);
 
   const [isDeptSelected, setIsDeptSelected]=useState(false);
+  const [selectedDept, setSelectedDept]=useState('');
   const [stations, setStations]=useState([]);
 
   function handleSelectDept(event) {
+    const selectedDepartement = depts.find( dept => dept.code === event.target.value)
     setIsDeptSelected(true);
-    const selectedDept = depts.find( dept => dept.code === event.target.value)
-    setStations(selectedDept.data);
+    setSelectedDept(selectedDepartement)
+    setStations(selectedDepartement.data);
   }
 
   return (
@@ -94,6 +96,7 @@ function App() {
       <section className="twoColumns">
         <div>
           <h2>Departements</h2>
+          <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           {error ? <p><i>{error}</i></p> : null}
           <div className="list">
             <DepartementList isloading={isloading} departements={depts} showMesurements={handleSelectDept}/>
@@ -101,13 +104,13 @@ function App() {
         </div>
         {isDeptSelected ?
           <div>
-            <h2>Station selectionnée pour les mesures</h2>
-            <h3>Nom departement selectionne</h3>
+            <h2>Stations de mesures du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
+            <p><i>10 premières stations uniquement</i></p>
             <div className="list">
               <StationsListForOneDept isloading={isloading} stations={stations}/>
             </div>
           </div>
-        : 'Choisissez un département'}
+        : ''}
       </section>
 
       </main>

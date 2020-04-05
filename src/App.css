@@ -13,7 +13,7 @@ main {
   padding-top: 40px;
 }
 
-p, h1, h2 {
+p, h1, h2, h3 {
   margin: 0;
   padding-left: 40px;
   padding-right: 40px;
@@ -35,7 +35,7 @@ p, h1, h2 {
 
 .twoColumns {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 span {
