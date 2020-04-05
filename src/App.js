@@ -73,6 +73,12 @@ function App() {
     }
   }, []);
 
+  const [deptSelected, selectDept]=useState(false)
+
+  function handleSelectDept() {
+    console.log('clicked')
+    selectDept(true)
+  }
 
   return (
     <div className="App">
@@ -88,15 +94,18 @@ function App() {
           <h2>Departements</h2>
           {error ? <p><i>{error}</i></p> : null}
           <div className="list">
-            <DepartementList isloading={isloading} departements={depts}/>
+            <DepartementList isloading={isloading} departements={depts} showMesurements={handleSelectDept}/>
           </div>
         </div>
-        <div>
-          <h2>Station selectionnée pour les mesures</h2>
-          <div className="list">
-            <MesurementList isloading={isloading} departements={depts}/>
+        {deptSelected ?
+          <div>
+            <h2>Station selectionnée pour les mesures</h2>
+            <h3>Nom departement selectionne</h3>
+            <div className="list">
+              <MeasurementsByDept isloading={isloading} departements={depts}/>
+            </div>
           </div>
-        </div>
+        : 'Choisissez un département'}
       </section>
 
       </main>
@@ -107,12 +116,7 @@ function App() {
 export default App;
 
 
-function DepartementList({isloading, departements}) {
-
-  function showMesurements() {
-    console.log('clicked')
-  }
-
+function DepartementList({isloading, departements, showMesurements}) {
   if (isloading) {
     return <span>Loading...</span>
   }
@@ -136,7 +140,7 @@ function DepartementList({isloading, departements}) {
   )
 };
 
-function MesurementList({isloading, departements}) {
+function MeasurementsByDept({isloading, departements}) { //WIP
   if (isloading) {
     return <span>Loading...</span>
   }
