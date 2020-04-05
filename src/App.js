@@ -61,6 +61,7 @@ function App() {
       const requests = await depts.map(dept => fetchStationsByDepartement(dept));
       const everything = await Promise.all(requests) // array with all departements and info of the station for each of them
       setDept(everything)
+      console.log(everything)
       setLoading(false)
     }
 
@@ -72,8 +73,7 @@ function App() {
     }
   }, []);
 
-  console.log('isLoading', isloading)
-
+  console.log('depts', depts)
   return (
     <div className="App">
       <header>
@@ -83,11 +83,19 @@ function App() {
         <Content />
         <SubNavigation />
 
-        <h2>Departements</h2>
-        {error ? <p><i>{error}</i></p> : null}
-        <div className="list">
-          <DepartementList isloading={isloading} departements={depts}/>
+      <section className="twoColumns">
+        <div>
+          <h2>Departements</h2>
+          {error ? <p><i>{error}</i></p> : null}
+          <div className="list">
+            <DepartementList isloading={isloading} departements={depts}/>
+          </div>
         </div>
+        <div>
+          <h2>Station selectionnée pour les mesures</h2>
+          {depts.length > 100 ? depts.map(dept => <p>{dept.data[0].code_bss}</p>) : 'not loaded'}
+        </div>
+      </section>
 
       </main>
     </div>
@@ -101,7 +109,6 @@ function DepartementList({isloading, departements}) {
   if (isloading) {
     return <span>Loading...</span>
   }
-
   return (
     <List
       itemLayout="horizontal"
