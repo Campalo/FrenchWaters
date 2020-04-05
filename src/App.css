@@ -29,8 +29,16 @@ p, h1, h2 {
   padding-right: 20px;
 }
 
+.btn-list {
+  padding-left: 40px;
+}
+
 .twoColumns {
   display: flex;
   justify-content: space-between;
+}
+
+span {
+  font-size: 1em;
 }
 

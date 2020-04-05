@@ -3,7 +3,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import SubNavigation from './components/SubNavigation';
 import Content from './components/Content';
-import { List, Avatar } from 'antd';
+import { List, Avatar, Button } from 'antd';
 import 'antd/dist/antd.css';
 
 
@@ -73,7 +73,7 @@ function App() {
     }
   }, []);
 
-  console.log('depts', depts)
+
   return (
     <div className="App">
       <header>
@@ -93,7 +93,9 @@ function App() {
         </div>
         <div>
           <h2>Station selectionnée pour les mesures</h2>
-          {depts.length > 100 ? depts.map(dept => <p>{dept.data[0].code_bss}</p>) : 'not loaded'}
+          <div className="list">
+            <MesurementList isloading={isloading} departements={depts}/>
+          </div>
         </div>
       </section>
 
@@ -106,6 +108,11 @@ export default App;
 
 
 function DepartementList({isloading, departements}) {
+
+  function showMesurements() {
+    console.log('clicked')
+  }
+
   if (isloading) {
     return <span>Loading...</span>
   }
@@ -116,9 +123,33 @@ function DepartementList({isloading, departements}) {
       renderItem={dept => ( // Equal to: departements.map( dept => <li>{dept.code}-{dept.nom}</li>)
         <List.Item>
           <List.Item.Meta
-            avatar={<Avatar src="https://images.unsplash.com/photo-1541103335697-086d3519c039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" />}
+            avatar={<Avatar src="https://images.unsplash.com/photo-1541103335697-086d3519c039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
             title={`${dept.code} - ${dept.nom}`}
             description={`${dept.count} stations`}
+          />
+          <div className="btn-list">
+            <Button onClick={showMesurements}>Select</Button>
+          </div>
+        </List.Item>
+      )}
+    />
+  )
+};
+
+function MesurementList({isloading, departements}) {
+  if (isloading) {
+    return <span>Loading...</span>
+  }
+  return (
+    <List
+      itemLayout="horizontal"
+      dataSource={departements}
+      renderItem={dept => (
+        <List.Item>
+          <List.Item.Meta
+            avatar={<Avatar src="https://images.unsplash.com/photo-1533201357341-8d79b10dd0f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
+            title={`Piézomètre: ${dept.data[0].code_bss}`}
+            description="Profondeur nappe et altitude de la nappe"
           />
         </List.Item>
       )}
