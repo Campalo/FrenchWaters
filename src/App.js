@@ -55,23 +55,24 @@ function App() {
     return {...responseJson, ...dept};
   }
 
-
   useEffect( () => {
     async function fetchEverything() {
       const depts = await fetchDepartements();
       const requests = await depts.map(dept => fetchStationsByDepartement(dept));
       const everything = await Promise.all(requests) // array with all departements and info of the station for each of them
       setDept(everything)
+      setLoading(false)
     }
 
     try {
       fetchEverything()
-      setLoading(false)
     } catch(err){
       setError(err.message)
       setLoading(false)
     }
   }, []);
+
+  console.log('isLoading', isloading)
 
   return (
     <div className="App">
@@ -111,7 +112,7 @@ function DepartementList({isloading, departements}) {
             avatar={<Avatar src="https://images.unsplash.com/photo-1541103335697-086d3519c039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" />}
             title={`${dept.code} - ${dept.nom}`}
             description={`${dept.count} stations`}
-            />
+          />
         </List.Item>
       )}
     />
