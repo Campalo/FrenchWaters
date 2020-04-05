@@ -69,7 +69,6 @@ function App() {
       setLoading(false)
     } catch(err){
       setError(err.message)
-      console.log(err.message)
       setLoading(false)
     }
   }, []);
@@ -82,11 +81,6 @@ function App() {
       <main>
         <Content />
         <SubNavigation />
-
-        <p>Stations</p>
-        {/* <ul>
-          {stations.map( (station, i) => <li key={depts[i].code}>{depts[i].code}: {station.count} stations</li>)}
-        </ul> */}
 
         <h2>Departements</h2>
         {error ? <p><i>{error}</i></p> : null}
@@ -116,7 +110,7 @@ function DepartementList({isloading, departements}) {
           <List.Item.Meta
             avatar={<Avatar src="https://images.unsplash.com/photo-1541103335697-086d3519c039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" />}
             title={`${dept.code} - ${dept.nom}`}
-            description="Nombre de stations"
+            description={`${dept.count} stations`}
             />
         </List.Item>
       )}
