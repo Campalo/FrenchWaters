@@ -7,9 +7,6 @@
     padding: 0 40px 0 40px;
     transition: transform 0.2s;
     font-weight: bold;
-}
-
-span {
     font-size: 1.5em;
 }
 
@@ -23,6 +20,7 @@ span {
     position: sticky;
     top: 0;
     z-index: 10;
+    font-size: 1.5em;
 }
 
 .hidden {
