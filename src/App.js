@@ -6,6 +6,7 @@ import Content from './components/Content';
 import { List, Avatar, Button } from 'antd';
 import 'antd/dist/antd.css';
 
+const TTL = 1000*60*60*24*7 // one week in milisecond ; TTL = time to live
 
 const options = {
   root: null, //body
@@ -57,12 +58,23 @@ function App() { // TODO: Store the fetch in local storage
 
   useEffect( () => {
     async function fetchEverything() {
-      const depts = await fetchDepartements();
-      const requests = await depts.map(dept => fetchStationsByDepartement(dept));
-      const everything = await Promise.all(requests) // array with all departements and info of the station for each of them
-      setDept(everything)
-      console.log(everything)
-      setLoading(false)
+      const fromStorage = localStorage.getItem("data")
+      const createddAt = localStorage.getItem("createdAt")
+      const  belowTTL = createddAt && (Date.now() - parseInt(createddAt, 10)) <  TTL
+
+      if (fromStorage && belowTTL) {
+        const everything = JSON.parse(fromStorage)
+        setDept(everything)
+        setLoading(false)
+      } else {
+        const depts = await fetchDepartements();
+        const requests = await depts.map(dept => fetchStationsByDepartement(dept));
+        const everything = await Promise.all(requests) // array with all departements and info of the station for each of them
+        setDept(everything)
+        setLoading(false)
+        localStorage.setItem("data", JSON.stringify(everything))
+        localStorage.setItem("createdAt", Date.now().toString()) // today's date in milisecond
+      }
     }
 
     try {
