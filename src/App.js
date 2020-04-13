@@ -30,7 +30,7 @@ const observer = new IntersectionObserver(([intersection]) => {
 }, options);
 
 
-function App() { // TODO: Store the fetch in local storage
+function App() {
 
   //SideNav effect
   useEffect(() => {
@@ -94,6 +94,16 @@ function App() { // TODO: Store the fetch in local storage
     setIsDeptSelected(true);
     setSelectedDept(selectedDepartement)
     setStations(selectedDepartement.data);
+    setIsStationSelected(false)
+  }
+
+  const [isStationSelected, setIsStationSelected]=useState(false);
+  const [selectedStation, setSelectedStation]=useState('');
+  const [depth, setDepth]=useState('');
+  const [altitude, setAltitude]=useState('');
+
+  function handleSelectStation(event) {
+    setIsStationSelected(true);
   }
 
   return (
@@ -105,13 +115,13 @@ function App() { // TODO: Store the fetch in local storage
         <Content />
         <SubNavigation />
 
-      <section className="twoColumns">
+      <section className="mainColumns">
         <div>
           <h2>Departements</h2>
           <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           {error ? <p><i>{error}</i></p> : null}
           <div className="list">
-            <DepartementList isloading={isloading} departements={depts} showMesurements={handleSelectDept}/>
+            <DepartementList isloading={isloading} departements={depts} showStations={handleSelectDept}/>
           </div>
         </div>
         {isDeptSelected ?
@@ -119,8 +129,17 @@ function App() { // TODO: Store the fetch in local storage
             <h2>Stations de mesures du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
             <p><i>10 premières stations uniquement</i></p>
             <div className="list">
-              <StationsListForOneDept isloading={isloading} stations={stations}/>
+              <StationsListForOneDept isloading={isloading} stations={stations} showMeasurements={handleSelectStation}/>
             </div>
+          </div>
+        : ''}
+        {isStationSelected ?
+          <div>
+            <h2>Mesures</h2>
+            <h3>Profondeur de la nappe en mètre</h3>
+            <p></p>
+            <h3>Altitude de la nappe en mètre</h3>
+            <p></p>
           </div>
         : ''}
       </section>
@@ -133,7 +152,7 @@ function App() { // TODO: Store the fetch in local storage
 export default App;
 
 
-function DepartementList({isloading, departements, showMesurements}) {
+function DepartementList({isloading, departements, showStations}) {
   if (isloading) {
     return <span>Loading...</span>
   }
@@ -149,7 +168,7 @@ function DepartementList({isloading, departements, showMesurements}) {
             description={`${dept.count} stations`}
           />
           <div className="btn-list">
-            <Button onClick={showMesurements} value={dept.code}>Select</Button>
+            <Button onClick={showStations} value={dept.code}>Select</Button>
           </div>
         </List.Item>
       )}
@@ -157,7 +176,7 @@ function DepartementList({isloading, departements, showMesurements}) {
   )
 };
 
-function StationsListForOneDept({isloading, stations}) { //WIP
+function StationsListForOneDept({isloading, stations, showMeasurements}) {
   if (isloading) {
     return <span>Loading...</span>
   }
@@ -169,9 +188,12 @@ function StationsListForOneDept({isloading, stations}) { //WIP
         <List.Item>
           <List.Item.Meta
             avatar={<Avatar src="https://images.unsplash.com/photo-1533201357341-8d79b10dd0f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
-            title={`Piézomètre: ${station.code_bss}`}
-            description="Profondeur nappe et altitude de la nappe"
+            title={`Piézomètre de ${station.nom_commune}`}
+            description="Période des relevés: ... "
           />
+           <div className="btn-list">
+            <Button onClick={showMeasurements} value={station.code_bss}>Select</Button>
+          </div>
         </List.Item>
       )}
     />
