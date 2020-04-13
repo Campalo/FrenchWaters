@@ -33,9 +33,10 @@ p, h1, h2, h3 {
   padding-left: 40px;
 }
 
-.twoColumns {
+.mainColumns {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+
 }
 
 span {
