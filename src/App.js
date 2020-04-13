@@ -6,7 +6,7 @@ import Content from './components/Content';
 import { List, Avatar, Button } from 'antd';
 import 'antd/dist/antd.css';
 
-const TTL = 1000*60*60*24*7 // one week in milisecond ; TTL = time to live
+const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
 const options = {
   root: null, //body
