@@ -50,7 +50,7 @@ function App() {
   }
 
   async function fetchStationsByDepartement(dept) {
-    const urlStationsByDept = `https://hubeau.eaufrance.fr/api/v1/qualite_nappes/stations?format=json&num_departement=${dept.code}&page=1&size=10`;
+    const urlStationsByDept = `https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/stations?code_departement=${dept.code}&page=1`;
     const response = await fetch(urlStationsByDept);
     const responseJson = await response.json();
     return {...responseJson, ...dept};
@@ -98,11 +98,20 @@ function App() {
   }
 
   const [isStationSelected, setIsStationSelected]=useState(false);
-  const [selectedStation, setSelectedStation]=useState('');
   const [depth, setDepth]=useState('');
   const [altitude, setAltitude]=useState('');
 
+  async function fetchMeasurementsByStation(station) {
+    const urlMeasurementsByStation = `https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/chroniques?code_bss=${station}&size=1&sort=desc`;
+    const response = await fetch(urlMeasurementsByStation);
+    const responseJson = await response.json();
+    setDepth(responseJson.data[0].profondeur_nappe);
+    setAltitude(responseJson.data[0].niveau_nappe_eau);
+    return responseJson;
+  }
+
   function handleSelectStation(event) {
+    fetchMeasurementsByStation(event.target.value);
     setIsStationSelected(true);
   }
 
@@ -127,7 +136,7 @@ function App() {
         {isDeptSelected ?
           <div>
             <h2>Stations de mesures du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
-            <p><i>10 premières stations uniquement</i></p>
+            <p><i>Une commune peut avoir plusieurs stations.<br/>Seules les stations ayant effectué des relevés sont listées.</i></p>
             <div className="list">
               <StationsListForOneDept isloading={isloading} stations={stations} showMeasurements={handleSelectStation}/>
             </div>
@@ -135,11 +144,11 @@ function App() {
         : ''}
         {isStationSelected ?
           <div>
-            <h2>Mesures</h2>
-            <h3>Profondeur de la nappe en mètre</h3>
-            <p></p>
-            <h3>Altitude de la nappe en mètre</h3>
-            <p></p>
+            <h2>Relevés</h2>
+            <h3>Profondeur de la nappe</h3>
+            <p>{depth} mètres</p>
+            <h3>Altitude de la nappe</h3>
+            <p>{altitude} mètres</p>
           </div>
         : ''}
       </section>
@@ -184,17 +193,19 @@ function StationsListForOneDept({isloading, stations, showMeasurements}) {
     <List
       itemLayout="horizontal"
       dataSource={stations}
-      renderItem={station => (
+      renderItem={station => ( station.nb_mesures_piezo > 0 ?
         <List.Item>
           <List.Item.Meta
             avatar={<Avatar src="https://images.unsplash.com/photo-1533201357341-8d79b10dd0f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
             title={`Piézomètre de ${station.nom_commune}`}
-            description={station.date_debut_mesure !== null ? `Relevés sur la période du ${station.date_debut_mesure} au ${station.date_fin_mesure}` : 'Dates non communiquées'}
+            description={station.date_fin_mesure !== null ? `Date du dernier relevé : ${station.date_fin_mesure}` : 'Date non communiquée'}
           />
            <div className="btn-list">
             <Button onClick={showMeasurements} value={station.code_bss}>Select</Button>
           </div>
         </List.Item>
+        :
+        <div className='hidden'></div> // Do not show the station if it does not have any measurements
       )}
     />
   )
