@@ -79,7 +79,7 @@ function App() {
 
     try {
       fetchEverything()
-    } catch(err){
+    } catch(err) {
       setError(err.message)
       setLoading(false)
     }
@@ -189,7 +189,7 @@ function StationsListForOneDept({isloading, stations, showMeasurements}) {
           <List.Item.Meta
             avatar={<Avatar src="https://images.unsplash.com/photo-1533201357341-8d79b10dd0f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
             title={`Piézomètre de ${station.nom_commune}`}
-            description="Période des relevés: ... "
+            description={station.date_debut_mesure !== null ? `Relevés sur la période du ${station.date_debut_mesure} au ${station.date_fin_mesure}` : 'Dates non communiquées'}
           />
            <div className="btn-list">
             <Button onClick={showMeasurements} value={station.code_bss}>Select</Button>
