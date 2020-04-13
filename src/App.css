@@ -43,3 +43,7 @@ span {
   font-size: 1em;
 }
 
+.hidden {
+  display: none;
+}
+
