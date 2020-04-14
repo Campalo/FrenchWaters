@@ -3,7 +3,9 @@ import './App.css';
 import Navigation from './components/Navigation';
 import SubNavigation from './components/SubNavigation';
 import Content from './components/Content';
+
 import { List, Avatar, Button } from 'antd';
+import { Spin } from 'antd';
 import 'antd/dist/antd.css';
 
 const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
@@ -128,16 +130,18 @@ function App() {
           <h2>Departements</h2>
           <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           {error ? <p><i>{error}</i></p> : null}
-          <div className="list">
-            <DepartementList isloading={isloading} departements={depts} showStations={handleSelectDept}/>
-          </div>
+          {isloading ? <div className="icon"><Spin/></div> :
+            <div className="list">
+              <DepartementList isloading={isloading} departements={depts} showStations={handleSelectDept}/>
+            </div>
+          }
         </div>
         {isDeptSelected ?
           <div>
             <h2>Stations de mesures du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
             <p><i>Une commune peut avoir plusieurs stations.<br/>Seules les stations ayant effectué des relevés sont listées.</i></p>
             <div className="list">
-              <StationsListForOneDept isloading={isloading} stations={stations} showMeasurements={handleSelectStation}/>
+              <StationsListForOneDept stations={stations} showMeasurements={handleSelectStation}/>
             </div>
           </div>
         : ''}
@@ -160,10 +164,7 @@ function App() {
 export default App;
 
 
-function DepartementList({isloading, departements, showStations}) {
-  if (isloading) {
-    return <span>Loading...</span>
-  }
+function DepartementList({departements, showStations}) {
   return (
     <List
       itemLayout="horizontal"
@@ -184,10 +185,7 @@ function DepartementList({isloading, departements, showStations}) {
   )
 };
 
-function StationsListForOneDept({isloading, stations, showMeasurements}) {
-  if (isloading) {
-    return <span>Loading...</span>
-  }
+function StationsListForOneDept({stations, showMeasurements}) {
   return (
     <List
       itemLayout="horizontal"

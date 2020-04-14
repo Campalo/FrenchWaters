@@ -11,6 +11,7 @@ header {
 main {
   background-color: rgb(240, 240, 240);
   padding-top: 40px;
+  min-height: 100vh;
 }
 
 p, h1, h2, h3 {
@@ -31,6 +32,11 @@ p, h1, h2, h3 {
 
 .btn-list {
   padding-left: 40px;
+}
+
+.icon {
+  padding: 40px;
+  text-align: center;
 }
 
 .mainColumns {
