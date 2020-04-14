@@ -107,11 +107,10 @@ function App() {
     const responseJson = await response.json();
     setDepth(responseJson.data[0].profondeur_nappe);
     setAltitude(responseJson.data[0].niveau_nappe_eau);
-    return responseJson;
   }
 
-  function handleSelectStation(event) {
-    fetchMeasurementsByStation(event.target.value);
+  async function handleSelectStation(event) {
+    await fetchMeasurementsByStation(event.target.value);
     setIsStationSelected(true);
   }
 
