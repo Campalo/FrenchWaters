@@ -8,6 +8,11 @@ import { List, Avatar, Button } from 'antd';
 import { Spin } from 'antd';
 import 'antd/dist/antd.css';
 
+import Odometer from 'react-odometerjs';
+import './components/Odometer.css';
+import "odometer/themes/odometer-theme-default.css";
+
+
 const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
 const options = {
@@ -100,8 +105,9 @@ function App() {
   }
 
   const [isStationSelected, setIsStationSelected]=useState(false);
-  const [depth, setDepth]=useState('');
-  const [altitude, setAltitude]=useState('');
+  const [selectedStation, setselectedStation]=useState([]);
+  const [depth, setDepth]=useState(0);
+  const [altitude, setAltitude]=useState(0);
 
   async function fetchMeasurementsByStation(station) {
     const urlMeasurementsByStation = `https://hubeau.eaufrance.fr/api/v1/niveaux_nappes/chroniques?code_bss=${station}&size=1&sort=desc`;
@@ -111,8 +117,9 @@ function App() {
     setAltitude(responseJson.data[0].niveau_nappe_eau);
   }
 
-  async function handleSelectStation(event) {
-    await fetchMeasurementsByStation(event.target.value);
+  async function handleSelectStation(code, commune) {
+    setselectedStation([code, commune]);
+    await fetchMeasurementsByStation(code)
     setIsStationSelected(true);
   }
 
@@ -138,7 +145,7 @@ function App() {
         </div>
         {isDeptSelected ?
           <div>
-            <h2>Stations de mesures du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
+            <h2>Stations de mesure du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
             <p><i>Une commune peut avoir plusieurs stations.<br/>Seules les stations ayant effectué des relevés sont listées.</i></p>
             <div className="list">
               <StationsListForOneDept stations={stations} showMeasurements={handleSelectStation}/>
@@ -147,11 +154,23 @@ function App() {
         : ''}
         {isStationSelected ?
           <div>
-            <h2>Relevés</h2>
-            <h3>Profondeur de la nappe</h3>
-            <p>{depth} mètres</p>
-            <h3>Altitude de la nappe</h3>
-            <p>{altitude} mètres</p>
+            <h2>Relevés de la station: <br/>{`${selectedStation[0]}`}<br/>située à {`${selectedStation[1]}`}</h2>
+            <div className="odometer-container card">
+              <div>
+                <h4 className="ant-list-item-meta-title">Profondeur de la nappe :</h4>
+                <div className="odometer-units">
+                  <Odometer format="(.ddd),dd" duration={1000} value={depth} />
+                  <span className="ant-list-item-meta-description units">mètres</span>
+                </div>
+              </div>
+              <div id="altitude">
+                <h4 className="ant-list-item-meta-title">Altitude de la nappe :</h4>
+                <div className="odometer-units">
+                  <Odometer format="(.ddd),dd" duration={1000} value={altitude} />
+                  <span className="ant-list-item-meta-description units">mètres</span>
+                </div>
+             </div>
+            </div>
           </div>
         : ''}
       </section>
@@ -198,7 +217,7 @@ function StationsListForOneDept({stations, showMeasurements}) {
             description={station.date_fin_mesure !== null ? `Date du dernier relevé : ${station.date_fin_mesure}` : 'Date non communiquée'}
           />
            <div className="btn-list">
-            <Button onClick={showMeasurements} value={station.code_bss}>Select</Button>
+            <Button onClick={() => showMeasurements(station.code_bss, station.nom_commune)}>Select</Button>
           </div>
         </List.Item>
         :
