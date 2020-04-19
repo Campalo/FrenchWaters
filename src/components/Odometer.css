@@ -1,0 +1,54 @@
+.odometer {
+    border-radius: 20px;
+    background-color: rgb(10, 190, 190);
+    padding: 4px; /* will play the border role to have inner border */
+}
+
+#altitude .odometer {
+    background-color: #CD8258;
+}
+
+.odometer-inside {
+    height: 60px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.odometer-digit,
+.odometer-digit-inner,
+.odometer-value,
+.odometer-formatting-mark {
+    line-height: 54px;
+    font-size: 60px;
+    color: rgb(10, 190, 190);
+}
+
+#altitude .odometer-value,
+#altitude .odometer-formatting-mark {
+    color: #CD8258;
+}
+
+.odometer-formatting-mark {
+    line-height: inherit;
+    display: inline-table;
+    vertical-align: middle;
+}
+
+.odometer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    color: rgb(10, 190, 190);
+}
+
+.odometer-units {
+    display: flex;
+    align-items: flex-end;
+}
+
+.units {
+    margin-left: 10px;
+}
