@@ -1,6 +1,6 @@
 #nav {
     height: 80px;
-    background-color: midnightblue;
+    background-color: #152B32;
     color: gainsboro;
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@
 }
 
 #subNav {
-    margin: 40px 0 40px 0;
+    margin: 0;
     padding: 0 40px 0 40px;
     height: 60px;
     display: flex;

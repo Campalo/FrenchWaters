@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import SubNavigation from './components/SubNavigation';
-import Content from './components/Content';
+import MainIntro from './components/MainIntro';
 import DepartementList from './components/DepartementList';
 import StationsListForOneDept from './components/StationList';
 
@@ -130,10 +130,12 @@ function App() {
         <Navigation />
       </header>
       <main>
-        <Content />
+
+        <MainIntro />
+
         <SubNavigation />
 
-      <section className="mainColumns">
+        <section className="mainColumns">
         <div>
           <div className="intro">
             <h2>Departements</h2>
