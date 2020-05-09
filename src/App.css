@@ -20,6 +20,10 @@ p, h1, h2, h3 {
   padding-right: 40px;
 }
 
+.intro {
+  min-height: 150px;
+}
+
 .card {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -35,7 +39,7 @@ p, h1, h2, h3 {
 }
 
 .list {
-  height: 400px;
+  height: 430px;
   overflow: auto;
 }
 

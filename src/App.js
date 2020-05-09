@@ -135,8 +135,10 @@ function App() {
 
       <section className="mainColumns">
         <div>
-          <h2>Departements</h2>
-          <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
+          <div className="intro">
+            <h2>Departements</h2>
+            <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
+          </div>
           {error ? <p><i>{error}</i></p> : null}
           {isloading ? <div className="icon"><Spin/></div> :
             <div className="list">
@@ -146,8 +148,11 @@ function App() {
         </div>
         {isDeptSelected ?
           <div>
-            <h2>Stations de mesure du département :<br/>{`${selectedDept.code} - ${selectedDept.nom}`}</h2>
-            <p><i>Une commune peut avoir plusieurs stations.<br/>Seules les stations ayant effectué des relevés sont listées.</i></p>
+              <div className="intro">
+                <h2>Stations de mesure du département :</h2>
+                <h3>{`${selectedDept.code} - ${selectedDept.nom}`}</h3>
+                <p><i>Une commune peut avoir plusieurs stations.<br/>Seules les stations ayant effectué des relevés sont listées.</i></p>
+              </div>
             <div className="list">
               <StationsListForOneDept stations={stations} showMeasurements={handleSelectStation}/>
             </div>
@@ -155,7 +160,10 @@ function App() {
         : ''}
         {isStationSelected ?
           <div>
-            <h2>Relevés de la station: <br/>{`${selectedStation[0]}`}<br/>située à {`${selectedStation[1]}`}</h2>
+            <div className="intro">
+              <h2>Relevés de la station:</h2>
+              <h3>{`${selectedStation[0]}`}<br/>située à {`${selectedStation[1]}`}</h3>
+            </div>
             <div className="odometer-container card">
               <div>
                 <h4 className="ant-list-item-meta-title">Profondeur de la nappe :</h4>
