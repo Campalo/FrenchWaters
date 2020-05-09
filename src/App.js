@@ -3,6 +3,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import SubNavigation from './components/SubNavigation';
 import Content from './components/Content';
+import DepartementList from './components/DepartementList';
 
 import { List, Avatar, Button } from 'antd';
 import { Spin } from 'antd';
@@ -139,7 +140,7 @@ function App() {
           {error ? <p><i>{error}</i></p> : null}
           {isloading ? <div className="icon"><Spin/></div> :
             <div className="list">
-              <DepartementList isloading={isloading} departements={depts} showStations={handleSelectDept}/>
+              <DepartementList departements={depts} showStations={handleSelectDept}/>
             </div>
           }
         </div>
@@ -183,26 +184,7 @@ function App() {
 export default App;
 
 
-function DepartementList({departements, showStations}) {
-  return (
-    <List
-      itemLayout="horizontal"
-      dataSource={departements}
-      renderItem={dept => ( // Equal to: departements.map( dept => <li>{dept.code}-{dept.nom}</li>)
-        <List.Item>
-          <List.Item.Meta
-            avatar={<Avatar src="https://images.unsplash.com/photo-1541103335697-086d3519c039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80" />}
-            title={`${dept.code} - ${dept.nom}`}
-            description={`${dept.count} stations`}
-          />
-          <div className="btn-list">
-            <Button onClick={showStations} value={dept.code}>Select</Button>
-          </div>
-        </List.Item>
-      )}
-    />
-  )
-};
+
 
 function StationsListForOneDept({stations, showMeasurements}) {
   return (
