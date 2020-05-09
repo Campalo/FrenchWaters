@@ -27,6 +27,7 @@ p, h1, h2, h3 {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
 .list, .card {
   background-color: white;
   width: max-content;
@@ -64,4 +65,8 @@ span {
 
 .hidden {
   display: none;
+}
+
+.tooltip {
+  margin-left: 3px;
 }

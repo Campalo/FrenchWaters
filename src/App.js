@@ -12,6 +12,8 @@ import 'antd/dist/antd.css';
 import Odometer from 'react-odometerjs';
 import './components/Odometer.css';
 import "odometer/themes/odometer-theme-default.css";
+import { Tooltip } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 
 // const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
@@ -88,8 +90,8 @@ function App() {
     try {
       fetchEverything()
     } catch(err) {
-      setError(err.message)
       setLoading(false)
+      setError(err.message) // TODO: Why error message not showing when fetch fail ?
     }
   }, []);
 
@@ -116,13 +118,16 @@ function App() {
     const responseJson = await response.json();
     setDepth(responseJson.data[0].profondeur_nappe);
     setAltitude(responseJson.data[0].niveau_nappe_eau);
-  }
+  } // TODO: useEffect + catch error
 
   async function handleSelectStation(code, commune) {
     setselectedStation([code, commune]);
     await fetchMeasurementsByStation(code)
     setIsStationSelected(true);
   }
+
+  const depth_text = "En mètres par rapport au repère de mesure (le sol, le haut du tube piézométrique, ...)";
+  const altitude_text = "En mètres NGF (système de mesure des altitudes sur les cartes topographiques)";
 
   return (
     <div className="App">
@@ -141,12 +146,12 @@ function App() {
             <h2>Departements</h2>
             <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           </div>
-          {error ? <p><i>{error}</i></p> : null}
           {isloading ? <Spin/> :
             <div className="list">
               <DepartementList departements={depts} showStations={handleSelectDept}/>
             </div>
           }
+          {error ? <p><i>{error}</i></p> : null}
         </div>
         {isDeptSelected ?
           <div>
@@ -171,14 +176,20 @@ function App() {
                 <h4 className="ant-list-item-meta-title">Profondeur de la nappe :</h4>
                 <div className="odometer-units">
                   <Odometer format="(.ddd),dd" duration={1000} value={depth} />
-                  <span className="ant-list-item-meta-description units">mètres</span>
+                  <Tooltip title={depth_text}>
+                    <span className="ant-list-item-meta-description units">mètres</span>
+                    <span className="ant-list-item-meta-description tooltip"><QuestionCircleOutlined /></span>
+                  </Tooltip>
                 </div>
               </div>
               <div id="altitude">
                 <h4 className="ant-list-item-meta-title">Altitude de la nappe :</h4>
                 <div className="odometer-units">
                   <Odometer format="(.ddd),dd" duration={1000} value={altitude} />
-                  <span className="ant-list-item-meta-description units">mètres</span>
+                  <Tooltip title={altitude_text}>
+                    <span className="ant-list-item-meta-description units">mètres</span>
+                    <span className="ant-list-item-meta-description tooltip"><QuestionCircleOutlined /></span>
+                  </Tooltip>
                 </div>
              </div>
             </div>
