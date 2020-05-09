@@ -13,7 +13,7 @@ import './components/Odometer.css';
 import "odometer/themes/odometer-theme-default.css";
 
 
-const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
+// const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
 const options = {
   root: null, //body
@@ -65,23 +65,23 @@ function App() {
 
   useEffect( () => {
     async function fetchEverything() {
-      const fromStorage = localStorage.getItem("data")
-      const createddAt = localStorage.getItem("createdAt")
-      const  belowTTL = createddAt && (Date.now() - parseInt(createddAt, 10)) <  TTL
+      // const fromStorage = localStorage.getItem("data")
+      // const createddAt = localStorage.getItem("createdAt")
+      // const  belowTTL = createddAt && (Date.now() - parseInt(createddAt, 10)) <  TTL
 
-      if (fromStorage && belowTTL) {
-        const everything = JSON.parse(fromStorage)
-        setDept(everything)
-        setLoading(false)
-      } else {
+      // if (fromStorage && belowTTL) {
+      //   const everything = JSON.parse(fromStorage)
+      //   setDept(everything)
+      //   setLoading(false)
+      // } else {
         const depts = await fetchDepartements();
         const requests = await depts.map(dept => fetchStationsByDepartement(dept));
         const everything = await Promise.all(requests) // array with all departements and info of the station for each of them
         setDept(everything)
         setLoading(false)
-        localStorage.setItem("data", JSON.stringify(everything))
-        localStorage.setItem("createdAt", Date.now().toString()) // today's date in milisecond
-      }
+      //   localStorage.setItem("data", JSON.stringify(everything))
+      //   localStorage.setItem("createdAt", Date.now().toString()) // today's date in milisecond
+      // }
     }
 
     try {
