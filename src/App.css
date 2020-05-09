@@ -34,6 +34,11 @@ p, h1, h2, h3 {
   padding-right: 10px;
 }
 
+.list {
+  height: 400px;
+  overflow: auto;
+}
+
 .btn-list {
   padding-left: 40px;
 }
