@@ -6,7 +6,7 @@ import Content from './components/Content';
 import DepartementList from './components/DepartementList';
 import StationsListForOneDept from './components/StationList';
 
-import { Spin } from 'antd';
+import Spin from './components/Spin';
 import 'antd/dist/antd.css';
 
 import Odometer from 'react-odometerjs';
@@ -140,7 +140,7 @@ function App() {
             <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           </div>
           {error ? <p><i>{error}</i></p> : null}
-          {isloading ? <div className="icon"><Spin/></div> :
+          {isloading ? <Spin/> :
             <div className="list">
               <DepartementList departements={depts} showStations={handleSelectDept}/>
             </div>
