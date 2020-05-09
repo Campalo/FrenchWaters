@@ -1,30 +1,31 @@
-p, ul {
-    color: white;
-}
-
 img {
-    padding-left: calc(120px + 5%);
+    padding-left: calc(150px + 5%);
     width: 100%;
     margin-left: auto;
     z-index: 1;
     overflow: hidden;
-    border-radius: 4px;
 }
 
 .content {
-    max-width: 600px;
+    max-width: 800px;
     margin-right: -100%;
     z-index: 2;
     margin-left: 40px;
-    margin-top: 60px;
-    margin-bottom: 60px;
     background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: large;
     display: flex;
     align-items: center;
-    border-radius: 4px;
+}
+
+.content > div {
+    color: white;
 }
 
 .containerMainIntro {
     display: flex;
+    align-items: center;
     background-color: #152B32;
+    padding-bottom: 40px;
 }
