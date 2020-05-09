@@ -21,7 +21,7 @@ p, h1, h2, h3 {
 }
 
 .intro {
-  min-height: 150px;
+  min-height: 140px;
 }
 
 .card {
@@ -39,8 +39,9 @@ p, h1, h2, h3 {
 }
 
 .list {
-  height: 430px;
+  max-height: 500px;
   overflow: auto;
+  margin-bottom: 40px;
 }
 
 .btn-list {
