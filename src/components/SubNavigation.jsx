@@ -4,7 +4,7 @@ import './Navigation.css';
 function SubNavigation() {
     return (
         <div id="subNav">
-            <span>Découvrez les données des stations par département</span>
+            <h2>Découvrez les données des stations par département</h2>
         </div>
     )
 }

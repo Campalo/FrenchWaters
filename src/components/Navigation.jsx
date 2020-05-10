@@ -4,7 +4,7 @@ import './Navigation.css';
 function Navigation() {
     return (
       <nav id="nav">
-        <span>Les nappes d'eau souterraines en France</span>
+        <h1>Les nappes d'eau souterraines en France</h1>
       </nav>
     );
 }
