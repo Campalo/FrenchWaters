@@ -9,18 +9,18 @@ header {
 }
 
 main {
-  background-color: rgb(240, 240, 240);
   min-height: 100vh;
 }
 
 p, h1, h2, h3 {
   margin: 0;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 80px;
+  color: white !important; /*TODO: check why the color cannot be overwritten by a class*/
 }
 
 .intro {
   min-height: 140px;
+  margin-top: 20px;
 }
 
 .card {
@@ -29,23 +29,24 @@ p, h1, h2, h3 {
 }
 
 .list, .card {
-  background-color: white;
+  background-color: #D2CDCA;
   width: max-content;
-  margin-left: 40px;
-  margin-right: 40px;
+  max-height: calc(100vh - 260px); /*260 = 140 intro + 80 subnav + 40 margin*/
+  min-height: 145px; /*two items*/
+  margin-left: 80px;
+  margin-right: auto;
   border-radius: 4px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .list {
-  max-height: 500px;
   overflow: auto;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 
 .btn-list {
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 .icon {
@@ -56,7 +57,11 @@ p, h1, h2, h3 {
 .mainColumns {
   display: flex;
   justify-content: flex-start;
+  height: calc(100vh - 80px);/*80 subnav*/
+}
 
+.lastCol {
+  margin-right: 40px;
 }
 
 span {

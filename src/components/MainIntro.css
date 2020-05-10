@@ -1,16 +1,17 @@
-img {
+.containerMainIntro img {
     padding-left: calc(150px + 5%);
     width: 100%;
     margin-left: auto;
     z-index: 1;
     overflow: hidden;
+    height: calc(100vh - 100px)
 }
 
 .content {
     max-width: 800px;
     margin-right: -100%;
     z-index: 2;
-    margin-left: 40px;
+    margin-left: 80px;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     padding: 10px;
@@ -19,13 +20,8 @@ img {
     align-items: center;
 }
 
-.content > div {
-    color: white;
-}
-
 .containerMainIntro {
     display: flex;
     align-items: center;
-    background-color: #152B32;
     padding-bottom: 40px;
 }

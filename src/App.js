@@ -18,16 +18,16 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 
 // const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
-const options = {
-  root: null, //body
-  rootMargin: '-80px 0px 0px 0px', // height of the header
-  threshold: 1 //100% target has crossed the intersection
-}
 
 //SideNav effect
+const options = {
+  root: null, //body
+  rootMargin: '-100px 0px 0px 0px', // height of the header
+  threshold: 1 //100% target has crossed the intersection
+}
 const observer = new IntersectionObserver(([intersection]) => {
-  const enterTop = intersection.isIntersecting && intersection.intersectionRect.top <= 80 + intersection.target.clientHeight;
-  const leaveTop = !intersection.isIntersecting && intersection.intersectionRect.top <= 80;
+  const enterTop = intersection.isIntersecting && intersection.intersectionRect.top <= 100 + intersection.target.clientHeight;
+  const leaveTop = !intersection.isIntersecting && intersection.intersectionRect.top <= 100;
 
   if (enterTop) {
     const navigation = document.getElementById('nav');
@@ -166,7 +166,7 @@ function App() {
           </div>
         : ''}
         {isStationSelected ?
-          <div>
+          <div className="lastCol">
             <div className="intro">
               <h2>Relevés de la station:</h2>
               <h3>{`${selectedStation[0]}`}<br/>située à {`${selectedStation[1]}`}</h3>
