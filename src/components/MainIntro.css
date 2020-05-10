@@ -4,14 +4,12 @@
     margin-left: auto;
     z-index: 1;
     overflow: hidden;
-    height: calc(100vh - 100px)
 }
 
 .content {
     max-width: 800px;
     margin-right: -100%;
     z-index: 2;
-    margin-left: 80px;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     padding: 10px;
@@ -20,8 +18,14 @@
     align-items: center;
 }
 
+.content p {
+    padding-top: 1em;
+}
+
 .containerMainIntro {
     display: flex;
     align-items: center;
-    padding-bottom: 40px;
+    min-height: fit-content;
+    max-height: calc(100vh - 100px);
+    overflow: hidden;
 }

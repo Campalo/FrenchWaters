@@ -6,6 +6,7 @@
     align-items: center;
     transition: transform 0.2s;
     font-size: 2em;
+    padding-left: 10px;
 }
 
 #subNav {
@@ -17,8 +18,8 @@
     top: 0;
     z-index: 10;
     font-size: 1.5em;
-    margin-left: 80px;
     border-radius: 4px 0 0 4px;
+    padding-left: 10px;
 }
 
 #subNav h2 {
