@@ -154,7 +154,7 @@ function App() {
           {error ? <p><i>{error}</i></p> : null}
         </div>
         {isDeptSelected ?
-          <div>
+          <div className="middleCol">
               <div className="intro">
                 <h2>Stations de mesure du département :</h2>
                 <h3>{`${selectedDept.code} - ${selectedDept.nom}`}</h3>

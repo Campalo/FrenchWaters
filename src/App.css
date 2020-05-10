@@ -1,5 +1,5 @@
-body {
-  margin: 0;
+.App {
+  padding: 0 0 0 7%;
 }
 
 header {
@@ -14,7 +14,6 @@ main {
 
 p, h1, h2, h3 {
   margin: 0;
-  padding-left: 80px;
   color: white !important; /*TODO: check why the color cannot be overwritten by a class*/
 }
 
@@ -33,7 +32,6 @@ p, h1, h2, h3 {
   width: max-content;
   max-height: calc(100vh - 260px); /*260 = 140 intro + 80 subnav + 40 margin*/
   min-height: 145px; /*two items*/
-  margin-left: 80px;
   margin-right: auto;
   border-radius: 4px;
   padding-left: 10px;
@@ -60,8 +58,13 @@ p, h1, h2, h3 {
   height: calc(100vh - 80px);/*80 subnav*/
 }
 
+.middleCol {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .lastCol {
-  margin-right: 40px;
+  margin-right: 7%;
 }
 
 span {
