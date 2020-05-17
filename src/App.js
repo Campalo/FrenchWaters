@@ -143,7 +143,7 @@ function App() {
         <section className="mainColumns">
         <div>
           <div className="intro">
-            <h2>Departements</h2>
+            <h2>Départements</h2>
             <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           </div>
           {isloading ? <Spin/> :
