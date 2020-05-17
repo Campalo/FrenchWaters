@@ -19,34 +19,9 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 // const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
 
-//SideNav effect
-const options = {
-  root: null, //body
-  rootMargin: '-100px 0px 0px 0px', // height of the header
-  threshold: 1 //100% target has crossed the intersection
-}
-const observer = new IntersectionObserver(([intersection]) => {
-  const enterTop = intersection.isIntersecting && intersection.intersectionRect.top <= 100 + intersection.target.clientHeight;
-  const leaveTop = !intersection.isIntersecting && intersection.intersectionRect.top <= 100;
-
-  if (enterTop) {
-    const navigation = document.getElementById('nav');
-    navigation.classList.remove('hidden')
-  }
-  if (leaveTop) {
-    const navigation = document.getElementById('nav');
-    navigation.classList.add('hidden')
-  }
-}, options);
 
 
 function App() {
-
-  //SideNav effect
-  useEffect(() => {
-   const subNavigation = document.getElementById('subNav');
-   observer.observe(subNavigation)
-  });
 
   const [depts, setDept] = useState([]);
   const [isloading, setLoading] = useState(true);
