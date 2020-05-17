@@ -29,9 +29,10 @@ p, h1, h2, h3 {
 
 .list, .card {
   background-color: #D2CDCA;
-  width: max-content;
-  max-height: calc(100vh - 260px); /*260 = 140 intro + 80 subnav + 40 margin*/
-  min-height: 145px; /*two items*/
+  max-width: max-content;
+  min-width: 250px;
+  max-height: calc(100vh - 260px); /* 260 = 140 intro + 80 subnav + 40 margin */
+  min-height: 220px; /* two items ; and same size as the odometer column */
   margin-right: auto;
   border-radius: 4px;
   padding-left: 10px;
