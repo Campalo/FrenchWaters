@@ -1,16 +1,18 @@
 #nav {
     height: 100px;
-    background-color: #152B32;
+    background-image: linear-gradient(to right, #152B32, #152B32F2); /* last two characters are for the opacity*/
     color: gainsboro;
     display: flex;
     align-items: center;
     transition: transform 0.2s;
     font-size: 2em;
     padding-left: 10px;
+    position: sticky;
+    top: 0;
 }
 
 #subNav {
-    height: 80px;
+    height: 100px;
     display: flex;
     align-items: center;
     background-color: #0F1D21;
