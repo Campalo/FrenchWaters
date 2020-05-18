@@ -31,7 +31,7 @@ p, h1, h2, h3 {
   background-color: #D2CDCA;
   max-width: max-content;
   min-width: 250px;
-  max-height: calc(100vh - 260px); /* 260 = 140 intro + 80 subnav + 40 margin */
+  max-height: calc(100vh - 280px); /* - (140 intro + 100 subnav + 40 margin) */
   min-height: 220px; /* two items ; and same size as the odometer column */
   margin-right: auto;
   border-radius: 4px;
@@ -56,7 +56,7 @@ p, h1, h2, h3 {
 .mainColumns {
   display: flex;
   justify-content: flex-start;
-  height: calc(100vh - 80px);/*80 subnav*/
+  height: calc(100vh - 100px);/* - subnav*/
 }
 
 .middleCol {
