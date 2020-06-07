@@ -4,17 +4,21 @@ import './MainIntro.css';
 function MainIntro() {
   return (
     <section className="containerMainIntro">
-      <div className="content">
+      <div className="content padding-left">
         <div>
-            <p>
-            Une nappe d'eau souterraine est une eau contenue dans les interstices
-            ou les fissures d'une roche du sous-sol.
-            </p>
-            <p>
-            Les stations de mesures de la qualité des eaux souterraines, aussi
-            appelées <i>piézomètres</i> sont répartis sur l'ensemble du territoir
-            français.
-            </p>
+          <p>
+          Les eaux souterraines sont composées de l’ensemble des réserves d’eau stockées dans les roches poreuses et perméables du sous-sol.
+          </p>
+          <p>
+          L’eau s’infiltre dans le sol, puis dans les interstices poreux du sous-sol ;
+          lorsque son parcours est interrompu par un substrat imperméables elle commence alors à s’accumuler dans les espaces vides
+          pour former une nappe. La profondeur des nappes peut atteindre jusqu’à parfois plus de 1000 mètres.
+          Certaines sont aussi très proches de la surface, ce sont les nappes phréatiques.
+          </p>
+          <p>
+          Le niveau et la qualité des nappes sont régulièrement mesurés dans les stations, aussi appelés <i>piézomètres</i>,
+          présentes sur l’ensemble du territoire français.
+          </p>
         </div>
       </div>
       <img

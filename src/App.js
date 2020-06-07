@@ -115,7 +115,7 @@ function App() {
 
         <SubNavigation />
 
-        <section className="mainColumns">
+        <section className="mainColumns padding-left">
         <div>
           <div className="intro">
             <h2>Départements</h2>
@@ -141,7 +141,7 @@ function App() {
           </div>
         : ''}
         {isStationSelected ?
-          <div className="lastCol">
+          <div className="padding-right">
             <div className="intro">
               <h2>Relevés de la station:</h2>
               <h3>{`${selectedStation[0]}`}<br/>située à {`${selectedStation[1]}`}</h3>
