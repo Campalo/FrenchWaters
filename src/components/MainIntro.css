@@ -10,7 +10,7 @@
     max-width: 800px;
     margin-right: -100%;
     z-index: 2;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)); /* last two characters are for the opacity*/
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
     backdrop-filter: blur(15px) saturate(1.5);
     border-radius: 4px;
     padding: 10px;
