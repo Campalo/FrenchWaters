@@ -11,6 +11,7 @@ main {
 p, h1, h2, h3 {
   margin: 0;
   color: white !important; /*TODO: check why the color cannot be overwritten by a class*/
+  line-height: normal;
 }
 
 .intro {
