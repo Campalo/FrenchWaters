@@ -87,6 +87,12 @@ span {
   .margin-left {
     margin-left: 40px;
   }
+  .list, .card {
+    max-height: calc(100vh - 280px); /* - (140 intro + 80 subnav + 40 margin) */
+  }
+  .mainColumns {
+    height: calc(100vh - 100px);/* - subnav*/
+  }
 }
 @media (max-width: 600px) {
   .padding-left {

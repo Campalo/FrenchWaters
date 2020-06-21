@@ -12,12 +12,6 @@
     top: 0;
 }
 
-@media (max-width: 850px) {
-    #nav {
-        font-size: 1.1em;
-    }
-}
-
 #subNav {
     height: 100px;
     display: flex;
@@ -39,7 +33,12 @@
 }
 
 @media (max-width: 850px) {
+    #nav {
+        font-size: 1.1em;
+        height: 80px;
+    }
     #subNav {
         font-size: 1em;
+        height: 80px;
     }
 }
