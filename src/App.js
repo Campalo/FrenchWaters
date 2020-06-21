@@ -169,14 +169,12 @@ function App() {
               <div>
                 <div className="intro">
                   <h3>
-                    <u>Stations de mesure du département :</u>
+                    <u>Stations de mesure de :</u>
                   </h3>
                   <h3>{`${selectedDept.code} - ${selectedDept.nom}`}</h3>
                   <p>
                     <i>
-                      Une commune peut avoir plusieurs stations.
-                      <br />
-                      Seules les stations ayant effectué des relevés sont
+                      Une commune peut avoir plusieurs stations. Seules les stations ayant effectué des relevés sont
                       listées.
                     </i>
                   </p>
@@ -253,7 +251,7 @@ function App() {
             )}
           </article>
         </section>
-        <section>
+        <section className="padding-left">
           <button onClick={goBack}>back</button>
           <button onClick={goNext}>next</button>
         </section>
