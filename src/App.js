@@ -118,7 +118,7 @@ function App() {
         <section className="mainColumns padding-left">
         <div>
           <div className="intro">
-            <h2>Départements</h2>
+            <h3><u>Départements</u></h3>
             <h3>Séléctionnez un département <br/> pour découvrir ses stations de mesure</h3>
           </div>
           {isloading ? <Spin/> :
@@ -131,7 +131,7 @@ function App() {
         {isDeptSelected ?
           <div className="middleCol">
               <div className="intro">
-                <h2>Stations de mesure du département :</h2>
+                <h3><u>Stations de mesure du département :</u></h3>
                 <h3>{`${selectedDept.code} - ${selectedDept.nom}`}</h3>
                 <p><i>Une commune peut avoir plusieurs stations.<br/>Seules les stations ayant effectué des relevés sont listées.</i></p>
               </div>
@@ -143,7 +143,7 @@ function App() {
         {isStationSelected ?
           <div className="padding-right">
             <div className="intro">
-              <h2>Relevés de la station:</h2>
+              <h3><u>Relevés de la station :</u></h3>
               <h3>{`${selectedStation[0]}`}<br/>située à {`${selectedStation[1]}`}</h3>
             </div>
             <div className="odometer-container card">
