@@ -21,7 +21,7 @@ h3, p {
 }
 
 .intro {
-  min-height: 140px;
+  min-height: 120px;
   margin-top: 20px;
 }
 
@@ -34,7 +34,7 @@ h3, p {
   background-color: #D2CDCA;
   max-width: max-content;
   min-width: 250px;
-  max-height: calc(100vh - 300px); /* - (140 intro + 120 subnav + 40 margin) */
+  max-height: calc(100vh - 280px); /* - (120 intro + 120 subnav + 40 margin) */
   min-height: 220px; /* two items ; and same size as the odometer column */
   margin-right: auto;
   border-radius: 4px;
@@ -85,6 +85,9 @@ span {
 .margin-left {
   margin-left: 50px;
 }
+.padding-right {
+  padding-right: 50px;
+}
 
 @media (max-width: 850px) {
   .padding-left {
@@ -92,6 +95,9 @@ span {
   }
   .margin-left {
     margin-left: 40px;
+  }
+  .padding-right {
+    padding-right: 40px;
   }
   .list, .card {
     max-height: calc(100vh - 280px); /* - (140 intro + 80 subnav + 40 margin) */
@@ -106,6 +112,9 @@ span {
   }
   .margin-left {
     margin-left: 25px;
+  }
+  .padding-right {
+    padding-right: 25px;
   }
 }
 
