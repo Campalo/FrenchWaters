@@ -104,7 +104,7 @@ section:last-child { /* mobile footer */
     padding-right: 40px;
   }
   .list, .card {
-    max-height: calc(100vh - 280px); /* - (140 intro + 80 subnav + 40 margin) */
+    max-height: calc(100vh - 320px); /* - (140 intro + 80 subnav + 40 margin + footer mobile ) */
   }
   .mainColumns {
     --activeColumn: 0;
