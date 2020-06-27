@@ -210,7 +210,7 @@ function App() {
                     </h4>
                     <div className="odometer-units">
                       <Odometer
-                        format="(.ddd),dd"
+                        format="(.ddd),d"
                         duration={1000}
                         value={depth}
                       />
@@ -230,7 +230,7 @@ function App() {
                     </h4>
                     <div className="odometer-units">
                       <Odometer
-                        format="(.ddd),dd"
+                        format="(.ddd),d"
                         duration={1000}
                         value={altitude}
                       />
