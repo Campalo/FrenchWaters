@@ -12,6 +12,7 @@ body h1, body h2 {
   margin: 0;
   color: whitesmoke;
   line-height: normal;
+  font-family: 'Krona One', sans-serif;
 }
 
 body h3, body p {
