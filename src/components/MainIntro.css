@@ -30,6 +30,9 @@
 .content p {
     padding-top: 1em;
 }
+.content p:last-child {
+    padding-bottom: 1em;
+}
 
 @media (max-width: 850px) {
     .containerMainIntro {
