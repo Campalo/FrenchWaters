@@ -115,6 +115,7 @@ section:last-child { /* mobile footer */
   }
   section:nth-of-type(2) { /* mainColums section*/
     padding-right: 0;
+    padding-left: 0;
   }
   .mainColumns article {
     padding-left: 30px;
@@ -122,9 +123,6 @@ section:last-child { /* mobile footer */
     flex-shrink: 0;
     transform: translateX(calc(var(--activeColumn)*(-100%)));
     transition: transform 0.4s linear;
-  }
-  .mainColumns article:first-of-type {
-    padding-left: 0;
   }
   .middleCol {
     margin-left: 0;
