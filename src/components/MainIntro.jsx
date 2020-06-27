@@ -11,12 +11,12 @@ function MainIntro() {
           </p>
           <p>
           L’eau s’infiltre dans le sol, puis dans les interstices poreux du sous-sol ;
-          lorsque son parcours est interrompu par un substrat imperméables elle commence alors à s’accumuler dans les espaces vides
+          lorsque son parcours est interrompu par un substrat imperméable elle commence alors à s’accumuler dans les espaces vides
           pour former une nappe. La profondeur des nappes peut atteindre jusqu’à parfois plus de 1000 mètres.
           Certaines sont aussi très proches de la surface, ce sont les nappes phréatiques.
           </p>
           <p>
-          Le niveau et la qualité des nappes sont régulièrement mesurés dans les stations, aussi appelés <i>piézomètres</i>,
+          Le niveau et la qualité des nappes sont régulièrement mesurés dans les stations, aussi appelées <i>piézomètres</i>,
           présentes sur l’ensemble du territoire français.
           </p>
         </div>
