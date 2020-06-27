@@ -26,6 +26,14 @@ body h3, body p {
   margin-top: 20px;
 }
 
+.intro h3:first-child {
+  margin-bottom: 1em;
+}
+
+.intro p:first-of-type {
+  margin-top: 0.5em;
+}
+
 .card {
   padding-top: 12px;
   padding-bottom: 12px;

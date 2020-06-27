@@ -169,7 +169,7 @@ function App() {
               <div>
                 <div className="intro">
                   <h3>
-                    <u>Stations de mesure de :</u>
+                    <u>Stations de mesure</u>
                   </h3>
                   <h3>{`${selectedDept.code} - ${selectedDept.nom}`}</h3>
                   <p>
@@ -195,7 +195,7 @@ function App() {
               <div>
                 <div className="intro">
                   <h3>
-                    <u>Relevés de la station :</u>
+                    <u>Relevés de la station</u>
                   </h3>
                   <h3>
                     {`${selectedStation[0]}`}
