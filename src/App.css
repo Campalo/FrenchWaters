@@ -8,15 +8,15 @@ main {
   min-height: 100vh;
 }
 
-h1, h2 {
+body h1, body h2 {
   margin: 0;
-  color: whitesmoke !important; /*TODO: check why the color cannot be overwritten by a class*/
+  color: whitesmoke;
   line-height: normal;
 }
 
-h3, p {
+body h3, body p {
   margin: 0;
-  color: gainsboro !important;
+  color: gainsboro;
   line-height: normal;
 }
 
