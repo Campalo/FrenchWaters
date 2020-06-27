@@ -4,7 +4,7 @@ import './Navigation.css';
 function SubNavigation() {
     return (
         <div id="subNav" className="margin-left">
-            <h2>DECOUVREZ LES DONNEES PAR DEPARTEMENT</h2>
+            <h2>DÉCOUVREZ LES DONNÉES PAR DÉPARTEMENT</h2>
         </div>
     )
 }
