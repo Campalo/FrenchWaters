@@ -12,8 +12,8 @@ import "antd/dist/antd.css";
 import Odometer from "react-odometerjs";
 import "./components/Odometer.css";
 import "odometer/themes/odometer-theme-default.css";
-import { Tooltip } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Tooltip, Button } from "antd";
+import { QuestionCircleOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
 
 // const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
@@ -252,8 +252,8 @@ function App() {
           </article>
         </section>
         <section className="padding-left">
-          <button onClick={goBack}>back</button>
-          <button onClick={goNext}>next</button>
+          <Button shape="circle" icon={<LeftOutlined />} onClick={goBack}></Button>
+          <Button shape="circle" icon={<RightOutlined />} onClick={goNext}></Button>
         </section>
       </main>
     </div>

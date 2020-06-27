@@ -130,18 +130,28 @@ section:last-child { /* mobile footer */
     margin-left: 0;
     margin-right: 0;
   }
+  .intro {
+    padding-right: 10px;
+  }
   section:last-of-type { /* mobile footer */
     height: 70px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
-  .intro {
-    padding-right: 10px;
-  }
-  button {
-    height: 100%;
-    width: 100%;
+  button.ant-btn-circle {
+    height: 50px;
+    width: 50px;
     border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color:white;
+  }
+  button.ant-btn:focus.ant-btn-circle {
+    background-color: rgba(255, 255, 255, 0.1);
+    color:white;
+  }
+  button.ant-btn:active.ant-btn-circle {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #1890ff
   }
 }
