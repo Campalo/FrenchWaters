@@ -7,17 +7,17 @@ function MainIntro() {
       <div className="content padding-left">
         <div>
           <p>
-          Les eaux souterraines sont composées de l’ensemble des réserves d’eau stockées dans les roches poreuses et perméables du sous-sol.
+            Les eaux souterraines sont composées de l’ensemble des réserves d’eau stockées dans les roches poreuses et perméables du sous-sol.
           </p>
           <p>
-          L’eau s’infiltre dans le sol, puis dans les interstices poreux du sous-sol ;
-          lorsque son parcours est interrompu par un substrat imperméable elle commence alors à s’accumuler dans les espaces vides
-          pour former une nappe. La profondeur des nappes peut atteindre jusqu’à parfois plus de 1000 mètres.
-          Certaines sont aussi très proches de la surface, ce sont les nappes phréatiques.
+            L’eau s’infiltre dans le sol, puis dans les interstices poreux du sous-sol ;
+            lorsque son parcours est interrompu par un substrat imperméable elle commence alors à s’accumuler dans les espaces vides
+            pour former une nappe. La profondeur des nappes peut atteindre jusqu’à parfois plus de 1000 mètres.
+            Certaines sont aussi très proches de la surface, ce sont les nappes phréatiques.
           </p>
           <p>
-          Le niveau et la qualité des nappes sont régulièrement mesurés dans les stations, aussi appelées <i>piézomètres</i>,
-          présentes sur l’ensemble du territoire français.
+            Le niveau et la qualité des nappes sont régulièrement mesurés dans les stations, aussi appelées <i>piézomètres</i>,
+            présentes sur l’ensemble du territoire français.
           </p>
           <div className="api">
             <img src="../../iconAPI.svg" alt="icon API Hubeau" />

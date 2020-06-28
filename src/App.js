@@ -15,7 +15,6 @@ import "odometer/themes/odometer-theme-default.css";
 import { Tooltip, Button } from "antd";
 import { QuestionCircleOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
 
-// const TTL = 1000*60*60*24 // one day in milisecond ; TTL = time to live
 
 function App() {
   const [depts, setDept] = useState([]);
@@ -38,15 +37,6 @@ function App() {
 
   useEffect(() => {
     async function fetchEverything() {
-      // const fromStorage = localStorage.getItem("data")
-      // const createddAt = localStorage.getItem("createdAt")
-      // const  belowTTL = createddAt && (Date.now() - parseInt(createddAt, 10)) <  TTL
-
-      // if (fromStorage && belowTTL) {
-      //   const everything = JSON.parse(fromStorage)
-      //   setDept(everything)
-      //   setLoading(false)
-      // } else {
       const depts = await fetchDepartements();
       const requests = await depts.map((dept) =>
         fetchStationsByDepartement(dept)
@@ -54,9 +44,6 @@ function App() {
       const everything = await Promise.all(requests); // array with all departements and info of the station for each of them
       setDept(everything);
       setLoading(false);
-      //   localStorage.setItem("data", JSON.stringify(everything))
-      //   localStorage.setItem("createdAt", Date.now().toString()) // today's date in milisecond
-      // }
     }
 
     try {
@@ -95,7 +82,7 @@ function App() {
     const responseJson = await response.json();
     setDepth(responseJson.data[0].profondeur_nappe);
     setAltitude(responseJson.data[0].niveau_nappe_eau);
-  } // TODO: useEffect + catch error
+  }
 
   async function handleSelectStation(code, commune) {
     setselectedStation([code, commune]);
@@ -131,9 +118,7 @@ function App() {
       </header>
       <main>
         <MainIntro />
-
         <SubNavigation />
-
         <section
           className="mainColumns padding-left padding-right"
           style={{ "--activeColumn": activeColumn }}

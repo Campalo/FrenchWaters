@@ -1,6 +1,6 @@
 #nav {
     height: 100px;
-    background-image: linear-gradient(to right, #194450, #194450F2); /* last two characters are for the opacity*/
+    background-image: linear-gradient(to right, #194450, #194450F2);
     color: gainsboro;
     display: flex;
     align-items: center;
