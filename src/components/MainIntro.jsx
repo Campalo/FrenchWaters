@@ -19,6 +19,18 @@ function MainIntro() {
           Le niveau et la qualité des nappes sont régulièrement mesurés dans les stations, aussi appelées <i>piézomètres</i>,
           présentes sur l’ensemble du territoire français.
           </p>
+          <div className="api">
+            <img src="../../iconAPI.svg" alt="icon API Hubeau" />
+            <p>
+              <i>
+                L'ensemble des données présentées sont mises à disposition par
+                le Service Public d'Information sur l'Eau via{" "}
+                <a href="https://hubeau.eaufrance.fr/page/api-piezometrie">
+                  l'API Hub'eau
+                </a>.
+              </i>
+            </p>
+          </div>
         </div>
       </div>
       <img
