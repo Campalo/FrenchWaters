@@ -46,12 +46,10 @@ function App() {
       setLoading(false);
     }
 
-    try {
-      fetchEverything();
-    } catch (err) {
+    fetchEverything().catch((err) => {
       setLoading(false);
-      setError(err.message); // TODO: Why error message not showing when fetch fail ?
-    }
+      setError(`We could not get the data from the API due to a "${err.message}" error.`);
+    })
   }, []);
 
   const [activeColumn, setActiveColumn] = useState(0);
@@ -144,7 +142,7 @@ function App() {
               </div>
             )}
             {error ? (
-              <p>
+              <p className="error">
                 <i>{error}</i>
               </p>
             ) : null}

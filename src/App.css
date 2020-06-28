@@ -21,6 +21,11 @@ body h3, body p {
   line-height: normal;
 }
 
+.error, .ant-empty-description  {
+  color: lightcoral;
+  margin-top: 20px;
+}
+
 .intro {
   min-height: 120px;
   margin-top: 20px;
