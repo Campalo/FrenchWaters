@@ -25,14 +25,14 @@
     display: flex;
     align-items: center;
     opacity: 0.8;
-    border-top: 1px solid gainsboro;
+    border-top: 1px solid lightblue;
 }
 
 .content {
     max-width: calc(100vw - 30%);
     margin-right: -100%;
     z-index: 2;
-    background-image: linear-gradient(to right, rgba(1, 60, 77, 0.8), rgba(1, 60, 77, 0.1));
+    background-image: linear-gradient(to right, rgba(1, 38, 48, 1), rgba(1, 38, 48, 0.2));
     backdrop-filter: blur(15px) saturate(1.5);
     border-radius: 0 4px 4px 0;
     padding-right: 20px;
