@@ -1,5 +1,6 @@
 import React from 'react';
 import './MainIntro.css';
+import hubeau from "../assets/logo-hubeau.svg";
 
 function MainIntro() {
   return (
@@ -20,7 +21,7 @@ function MainIntro() {
             présentes sur l’ensemble du territoire français.
           </p>
           <div className="api">
-            <img src="../../iconAPI.svg" alt="icon API Hubeau" />
+            <img src={hubeau} alt="icon API Hubeau" />
             <p>
               <i>
                 L'ensemble des données présentées sont mises à disposition par

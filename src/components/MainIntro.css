@@ -15,7 +15,7 @@
 }
 
 .containerMainIntro .content div img {
-    width: 45px;
+    width: 150px;
     padding-left: 0;
     margin-left: 0;
     margin-right: 20px;
@@ -64,6 +64,6 @@
     }
     .containerMainIntro .content div img {
         display: flex;
-        width: 125px;
+        width: 200px;
     }
 }
