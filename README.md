@@ -1,4 +1,4 @@
-# The underground French waters 
+# The underground French waters - [visit here](https://frenchwaters.netlify.app/)
 On this landing page, a French speaking user will discover the multitude of underground waters located over the French landscape. 
 The user selects a departement, then sees a list of all the stations of measurement located in this specific departement, by clicking on one of the stations it displays the depth and altitude of the selected underground water station. 
 
