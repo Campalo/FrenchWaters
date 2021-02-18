@@ -35,7 +35,7 @@ function MainIntro() {
         </div>
       </div>
       <img
-        src="https://images.unsplash.com/photo-1500440148957-7651acaa127f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=60"
+        src="https://images.unsplash.com/photo-1500440148957-7651acaa127f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=40"
         alt="eau souterraine"
       />
     </section>

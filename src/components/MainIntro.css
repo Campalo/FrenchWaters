@@ -51,7 +51,7 @@
 
 @media (max-width: 850px) {
     .containerMainIntro {
-        background-image: url("../assets/underground-water-south-france.jpeg");
+        background-image: url("https://images.unsplash.com/photo-1500440148957-7651acaa127f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=40");
         background-size: cover;
         padding: 50px 20px 50px 0;
     }
