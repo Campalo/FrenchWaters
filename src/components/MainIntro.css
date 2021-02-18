@@ -37,8 +37,6 @@
     border-radius: 0 4px 4px 0;
     padding-right: 20px;
     font-size: 1.3em;
-    display: flex;
-    align-items: center;
 }
 
 .content p {
