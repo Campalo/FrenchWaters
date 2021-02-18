@@ -17,7 +17,7 @@ function DepartementList({departements, showStations}) {
                             description={`${dept.count} stations`}
                         />
                         <div className="btn-list">
-                            <Button onClick={showStations} value={dept.code}>Select</Button>
+                            <Button onClick={() => showStations(dept.code)}>Select</Button>
                         </div>
                     </List.Item>
                 )}
