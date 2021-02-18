@@ -107,6 +107,13 @@ section:last-child { /* mobile footer */
   padding-right: 50px;
 }
 
+.ant-alert.ant-alert-error {
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+  width: 100vw;
+}
+
 @media (max-width: 850px) {
   .padding-left {
     padding-left: 30px;

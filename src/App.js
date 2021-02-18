@@ -12,14 +12,14 @@ import "antd/dist/antd.css";
 import Odometer from "react-odometerjs";
 import "./components/Odometer.css";
 import "odometer/themes/odometer-theme-default.css";
-import { Tooltip, Button } from "antd";
+import { Tooltip, Button, Alert } from "antd";
 import { QuestionCircleOutlined, RightOutlined, LeftOutlined } from "@ant-design/icons";
 
 
 function App() {
   const [depts, setDept] = useState([]);
   const [isloading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [errorAPI, setErrorAPI] = useState(null);
 
   async function fetchDepartements() {
     const urlDept = "https://geo.api.gouv.fr/departements/";
@@ -48,7 +48,7 @@ function App() {
 
     fetchEverything().catch((err) => {
       setLoading(false);
-      setError(`We could not get the data from the API due to a "${err.message}" error.`);
+      setErrorAPI(`We could not get the data from the API due to a "${err.message}" error.`);
     })
   }, []);
 
@@ -57,20 +57,26 @@ function App() {
   const [isDeptSelected, setIsDeptSelected] = useState(false);
   const [selectedDept, setSelectedDept] = useState("");
   const [stations, setStations] = useState([]);
+  const [errorSelected, setErrorSelected] = useState(null)
 
-  function handleSelectDept(event) {
+  function handleSelectDept(code) {
     const selectedDepartement = depts.find(
-      (dept) => dept.code === event.target.value
-    );
-    setIsDeptSelected(true);
-    setSelectedDept(selectedDepartement);
-    setStations(selectedDepartement.data);
-    setIsStationSelected(false);
-    setActiveColumn(1);
+        (dept) => dept.code === code
+      );
+    if (selectedDepartement) {
+      setIsDeptSelected(true);
+      setSelectedDept(selectedDepartement);
+      setStations(selectedDepartement.data);
+      setIsStationSelected(false);
+      setActiveColumn(1);
+      setErrorSelected(null);
+    } else {
+      setErrorSelected(errorText);
+    }
   }
 
   const [isStationSelected, setIsStationSelected] = useState(false);
-  const [selectedStation, setselectedStation] = useState([]);
+  const [selectedStation, setSelectedStation] = useState([]);
   const [depth, setDepth] = useState(0);
   const [altitude, setAltitude] = useState(0);
 
@@ -83,10 +89,15 @@ function App() {
   }
 
   async function handleSelectStation(code, commune) {
-    setselectedStation([code, commune]);
-    await fetchMeasurementsByStation(code);
-    setIsStationSelected(true);
-    setActiveColumn(2);
+    setSelectedStation([code, commune]);
+    try {
+      await fetchMeasurementsByStation(code);
+      setIsStationSelected(true);
+      setActiveColumn(2);
+      setErrorSelected(null);
+    } catch(error) {
+      setErrorSelected(errorText);
+    }
   }
 
   function goBack() {
@@ -108,6 +119,7 @@ function App() {
     "En mètres par rapport au repère de mesure (le sol, le haut du tube piézométrique, ...)";
   const altitude_text =
     "En mètres NGF (système de mesure des altitudes sur les cartes topographiques)";
+  const errorText = "Une erreur est survenue, merci de réessayer ultérieurement";
 
   return (
     <div className="App">
@@ -115,21 +127,18 @@ function App() {
         <Navigation />
       </header>
       <main>
+        {(errorAPI || errorSelected) && <Alert message={errorAPI || errorSelected} type="error" closable showIcon className="error"/>}
         <MainIntro />
         <SubNavigation />
+
         <section
           className="mainColumns padding-left padding-right"
           style={{ "--activeColumn": activeColumn }}
         >
           <article>
             <div className="intro">
-              <h3>
-                <u>Départements</u>
-              </h3>
-              <h3>
-                Séléctionnez un département <br /> pour découvrir ses stations
-                de mesure
-              </h3>
+              <h3><u>Départements</u></h3>
+              <h3>Séléctionnez un département <br /> pour découvrir ses stations de mesure</h3>
             </div>
             {isloading ? (
               <Spin />
@@ -141,14 +150,10 @@ function App() {
                 />
               </div>
             )}
-            {error ? (
-              <p className="error">
-                <i>{error}</i>
-              </p>
-            ) : null}
           </article>
+
           <article className="middleCol">
-            {isDeptSelected ? (
+            {isDeptSelected && (
               <div>
                 <div className="intro">
                   <h3>
@@ -169,12 +174,11 @@ function App() {
                   />
                 </div>
               </div>
-            ) : (
-              ""
             )}
           </article>
+
           <article>
-            {isStationSelected ? (
+            {isStationSelected && (
               <div>
                 <div className="intro">
                   <h3>
@@ -229,11 +233,10 @@ function App() {
                   </div>
                 </div>
               </div>
-            ) : (
-              ""
             )}
           </article>
         </section>
+
         <section className="padding-left">
           <Button shape="circle" icon={<LeftOutlined />} onClick={goBack}></Button>
           <Button shape="circle" icon={<RightOutlined />} onClick={goNext}></Button>
